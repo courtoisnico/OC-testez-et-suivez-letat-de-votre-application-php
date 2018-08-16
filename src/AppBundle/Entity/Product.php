@@ -1,15 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ncourtois
- * Date: 09/08/2018
- * Time: 13:56
- */
 
 namespace AppBundle\Entity;
-
-
-use phpDocumentor\Reflection\Types\Self_;
 
 class Product
 {
@@ -31,7 +22,7 @@ class Product
     public function computeTVA()
     {
         if ($this->price < 0) {
-            throw new \LogicException('The TVA cannot be negative');
+            throw new \LogicException('The TVA cannot be negative.');
         }
 
         if (self::FOOD_PRODUCT == $this->type) {

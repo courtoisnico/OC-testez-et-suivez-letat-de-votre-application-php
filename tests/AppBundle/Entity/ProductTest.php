@@ -1,36 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ncourtois
- * Date: 09/08/2018
- * Time: 14:02
- */
 
 namespace Tests\AppBundle\Entity;
 
-
 use AppBundle\Entity\Product;
-use PHPUnit\Framework\TestCase;
 
-class ProductTest extends TestCase
+class ProductTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider pricesForFoodProduct
      */
-    public function testComputeTVAFoodProduct($price, $expectedTVA)
+    public function testcomputeTVAFoodProduct($price, $expectedTva)
     {
         $product = new Product('Un produit', Product::FOOD_PRODUCT, $price);
 
-        $this->assertSame($expectedTVA, $product->computeTVA());
-    }
-
-    public function pricesForFoodProduct()
-    {
-        return [
-            [0, 0.0],
-            [20, 1.1],
-            [100, 5.5],
-        ];
+        $this->assertSame($expectedTva, $product->computeTVA());
     }
 
     public function testComputeTVAOtherProduct()
@@ -47,5 +30,14 @@ class ProductTest extends TestCase
         $this->expectException('LogicException');
 
         $product->computeTVA();
+    }
+
+    public function pricesForFoodProduct()
+    {
+        return [
+            [0, 0.0],
+            [20, 1.1],
+            [100, 5.5]
+        ];
     }
 }
